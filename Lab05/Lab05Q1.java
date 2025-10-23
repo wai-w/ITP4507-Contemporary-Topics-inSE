@@ -14,37 +14,41 @@ public class Lab05Q1 {
         while (true) {
             System.out.println("Enter command: 0 = exit, 1 = undo, 2 = Command1, 3 = Command2");
             command = sc.nextInt();
-
-            switch (command) {
-                case 0 -> {
-                    com = createExitCommand();
-                    com.execute();
-                }
-
-                case 1 -> {
-                    // undo the commands	
-                    com = createUndoCommand(commandStack);
-                    com.execute();
-                }
-
-                case 2 -> {
-                    //must be a new object!
-                    com = createCommand1(sc);
-                    com.execute();
-                    commandStack.push(com);
-                }
-
-                case 3 -> {
-                    com = createCommand2(sc);
-                    com.execute();
-                    commandStack.push(com);
-                }
-            }
+			com = createExitCommand(command, sc, commandStack);
+			if (com != null) {
+				com.execute();
+			} else {
+				System.out.println("Invalid command!");
         }
     }
+}
 
-    public static Command createExitCommand() {
-        return new ExitCommand();
+    public static Command createExitCommand(int command, Scanner sc, Stack<Command> commandStack) {
+        switch (command) {
+            case 0 -> {
+                return new ExitCommand();
+            }
+
+            case 1 ->{
+				return new UndoCommand(commandStack);
+			}
+            case 2 -> {
+				Command com = new Command1(sc);
+				commandStack.push(com);
+				return com;
+			}
+
+			case 3 -> {
+				Command com = new Command2(sc);
+				commandStack.push(com);
+				return com;
+			}
+
+			default -> {
+				return null;
+			}	
+        }
+
     }
 
     public static Command createUndoCommand(Stack<Command> commandStack) {
