@@ -26,7 +26,7 @@ public class Lab05Q3 {
                 if (!(command instanceof ExitCommand || 
                       command instanceof UndoCommand || 
                       command instanceof DrawAllShapesCommand)) {
-                    history.push(command);
+                    history.push(command);// Only push commands that can be undone
                 }
             } else {
                 System.out.println("Invalid command!");
