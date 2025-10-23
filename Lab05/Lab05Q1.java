@@ -10,7 +10,7 @@ public class Lab05Q1 {
 
         int amount = 0;
         Command com; //Object for a command
-        Stack commandStack = new Stack();
+        Stack<Command> commandStack = new Stack<>();//<Command> it will make Stack only can store Command objects
         int command;
         while (true) {
             System.out.println("Enter command: 0 = exit, 1 = undo, 2 = Command1, 3 = Command2");
@@ -24,9 +24,9 @@ public class Lab05Q1 {
                 case 1:
                     // undo the commands	
                     if (!commandStack.empty()) {
-                        // get the latest command object in the stack 
-                        Command c = (Command) commandStack.pop();
-                        // undo the latest command					
+                        // get the latest command object in the stack
+                        Command c = commandStack.pop();//pop the command from stack
+                        // undo the latest command
                         c.undo();
                     } else {
                         System.out.println("Nothing to undo!");
