@@ -1,6 +1,8 @@
-import java.util.Scanner;
+
+import java.util.*;
 
 public interface Command {
+
     public void execute();
 
     public void undo();
@@ -8,6 +10,7 @@ public interface Command {
 }
 
 class Command1 implements Command {
+
     private int id;
     Scanner sc;
 
@@ -27,6 +30,7 @@ class Command1 implements Command {
 }
 
 class Command2 implements Command {
+
     private int id;
     Scanner sc;
 
@@ -42,5 +46,39 @@ class Command2 implements Command {
 
     public void undo() {
         System.out.println(id + "Command 2 : undo()");
+    }
+}
+
+class ExitCommand implements Command {
+
+    public void execute() {
+        System.exit(0);
+    }
+
+    public void undo() {
+        // Do nothing
+    }
+}
+
+class UndoCommand implements Command {
+    private Stack<Command> commandStack;
+
+    public UndoCommand(Stack<Command> commandStack) {
+        this.commandStack = commandStack;
+    }
+    
+    public void execute() {
+        if (!commandStack.empty()) {
+            // get the latest command object in the stack
+            Command c = commandStack.pop();//pop the command from stack
+            // undo the latest command
+            c.undo();
+        } else {
+            System.out.println("Nothing to undo!");
+        }
+    }
+
+    public void undo() {
+        // Do nothing
     }
 }
