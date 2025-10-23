@@ -16,29 +16,29 @@ public class Lab05Q1 {
             command = sc.nextInt();
 
             switch (command) {
-                case 0:
+                case 0 -> {
                     com = new ExitCommand();
                     com.execute();
-                    break;
+                }
 
-                case 1:
+                case 1 -> {
                     // undo the commands	
                     com = new UndoCommand(commandStack);
                     com.execute();
-                    break;
+                }
 
-                case 2:
+                case 2 -> {
                     //must be a new object!
                     com = new Command1(sc);
                     com.execute();
                     commandStack.push(com);
-                    break;
+                }
 
-                case 3:
+                case 3 -> {
                     com = new Command2(sc);
                     com.execute();
                     commandStack.push(com);
-                    break;
+                }
             }
         }
     }
