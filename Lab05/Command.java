@@ -66,7 +66,7 @@ class UndoCommand implements Command {
     public UndoCommand(Stack<Command> commandStack) {
         this.commandStack = commandStack;
     }
-    
+
     public void execute() {
         if (!commandStack.empty()) {
             // get the latest command object in the stack
@@ -81,4 +81,7 @@ class UndoCommand implements Command {
     public void undo() {
         // Do nothing
     }
+
+    
 }
+
