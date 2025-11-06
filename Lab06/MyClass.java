@@ -13,16 +13,16 @@ public class MyClass {
 
 }
 
-public class Memento {
+class Memento {
     private int mState;
-    private MyClass myClass;
+    MyClass myClass;
 
     public Memento(MyClass mc) {
-        this.myClass = mc;
-        this.mState = mc.getState();
+        this.myClass = mc;//linking
+        this.mState = mc.getState();//value assignment
     }
 
-    public int getState() {
-        return mState;
+    public void restore() {
+        myClass.state = mState;//restoring state
     }
 }
